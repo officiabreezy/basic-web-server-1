@@ -16,11 +16,11 @@ app.get('/', (req, res) => {
 
 
 app.get('/api/hello', async (req, res) =>{
-    const visitor_name = req.query.name
+    const visitorName = req.query.visitor_name
     const ip =  req.clientIp || '8.8.8.8'
 
 
-    if (!visitor_name) {
+    if (!visitorName) {
         return res.status(404).json({message: "kindly provide a name"});
     }
 
@@ -50,9 +50,8 @@ app.get('/api/hello', async (req, res) =>{
 const response = {
     clientIp: ip,
     location: region,
-    client_name: visitor_name,
-    temperature: temp_c
-
+    greeting: `hello, ${visitorName}!, the temperature is ${temp_c} degree celsius in ${region}`,
+  
 }
 
 return res.status(200).json({message: 'Success', response})
